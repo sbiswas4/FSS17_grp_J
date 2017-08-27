@@ -44,3 +44,10 @@ if __name__ == '__main__':
     document_data_frame = document_data_frame.filter(regex = '^[^\?]')
     document_data_frame.replace(to_replace='\t*\s*#.*',value='',regex=True,inplace=True)
     print document_data_frame
+
+    '''PENDING
+    type casting
+    type checking and eliminate rows with faulty data
+    wrong number of cells
+    error reporting
+    '''
