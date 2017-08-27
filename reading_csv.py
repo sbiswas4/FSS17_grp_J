@@ -1,8 +1,3 @@
-'''
-Created on 25-Aug-2017
-
-@author: advait
-'''
 import sys
 import pandas as pd
 import csv
@@ -22,7 +17,6 @@ class Preprocessor(object):
     
     def align_rows(self,file_to_be_preprocessed):
         converted_document_to_list = Preprocessor().read_input_file_and_convert_to_list(file_to_be_preprocessed)
-#     pprint(converted_document_to_list)
         print len(converted_document_to_list)
         size_of_list = len(converted_document_to_list)
         for i in range(size_of_list-1):
@@ -47,6 +41,6 @@ if __name__ == '__main__':
 #     file_to_be_preprocessed = sys.argv[1]
     file_to_be_preprocessed = 'sample2'
     document_data_frame = pd.DataFrame(Preprocessor().white_space_removal(file_to_be_preprocessed)[1:],columns=Preprocessor().white_space_removal(file_to_be_preprocessed)[0])
+    document_data_frame = document_data_frame.filter(regex = '^[^\?]')
+    document_data_frame.replace(to_replace='\t*\s*#.*',value='',regex=True,inplace=True)
     print document_data_frame
-#     pprint(white_space_removal)    
-#     print type(white_space_removal[0][3])
