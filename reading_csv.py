@@ -49,8 +49,12 @@ class Preprocessor(object):
                 index_of_disqualified_attribute.append(data_list_of_list[0].index(header))
             elif header.find('$') != -1:
                 numeric_value.append(data_list_of_list[0].index(header))    
-        for row_vector in data_list_of_list:
-            [row_vector.pop(i) for i in index_of_disqualified_attribute]
+        number_of_index_shifted=0
+        for i in range(len(index_of_disqualified_attribute)):
+            for row_vector in data_list_of_list:
+                row_vector.pop(index_of_disqualified_attribute[i]-number_of_index_shifted)
+            number_of_index_shifted+=1
+
             
         number_of_rows = len(data_list_of_list)    
         i=1
