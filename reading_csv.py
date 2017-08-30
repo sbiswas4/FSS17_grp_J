@@ -1,7 +1,7 @@
 import sys
-import pandas as pd
-import csv
 from pprint import pprint
+import time
+import re
 
 class Preprocessor(object):
     
@@ -10,14 +10,13 @@ class Preprocessor(object):
         document_list=[]
         file_writing=open('aligned_file.csv','wb')
         with open(file_to_be_preprocessed) as input_file:
-            reader = csv.reader(input_file)
-            for row in reader:
-                document_list.append(row)
+            content = input_file.read().splitlines()
+            for sentence in content:
+                document_list.append(sentence.split(","))
         return document_list       
     
     def align_rows(self,file_to_be_preprocessed):
         converted_document_to_list = Preprocessor().read_input_file_and_convert_to_list(file_to_be_preprocessed)
-        print len(converted_document_to_list)
         size_of_list = len(converted_document_to_list)
         for i in range(size_of_list-1):
             if len(converted_document_to_list[i]) < len(converted_document_to_list[0]) and not converted_document_to_list[i][-1].strip() :
@@ -28,26 +27,68 @@ class Preprocessor(object):
         return converted_document_to_list
     
     def white_space_removal(self,file_to_be_preprocessed):
-        '''type correction left , also type can be found from column ($ -> numeric value i.e. float in example)'''
         converted_document_to_list = Preprocessor().align_rows(file_to_be_preprocessed)
         stripped_document=[]
         for row_vector in converted_document_to_list[:]:
             stripped_document.append([cell.strip() for cell in row_vector])
         return stripped_document
-        
-
+    
+    def remove_comments(self,file_to_be_preprocessed):
+        data_list_of_list = Preprocessor().detect_wrong_number_of_cell(file_to_be_preprocessed)
+        for j in range(len(data_list_of_list)):
+            for i in range(len(data_list_of_list[0])):
+                data_list_of_list[j][i]=re.sub(r'\t*\s*#.*','',data_list_of_list[j][i])
+        return data_list_of_list
+    
+    def remove_extranous_attribute_and_type_caste_numeric_values(self,file_to_be_preprocessed):
+        data_list_of_list = Preprocessor().remove_comments(file_to_be_preprocessed)
+        index_of_disqualified_attribute=[]
+        numeric_value=[]
+        for header in data_list_of_list[0]:
+            if header.find('?') == 0:
+                index_of_disqualified_attribute.append(data_list_of_list[0].index(header))
+            elif header.find('$') == 0:
+                numeric_value.append(data_list_of_list[0].index(header))    
+        for row_vector in data_list_of_list:
+            [row_vector.pop(i) for i in index_of_disqualified_attribute]
+            
+        number_of_rows = len(data_list_of_list)    
+        i=1
+        while i<number_of_rows:
+            try:
+                    for j in numeric_value:
+                        data_list_of_list[i][j] = float(data_list_of_list[i][j])
+                    i+=1            
+            except ValueError:
+                data_list_of_list.pop(i)
+                number_of_rows-=1
+                pass 
+        return data_list_of_list
+    
+    def detect_wrong_number_of_cell(self,file_to_be_preprocessed):
+        data_list_of_list = Preprocessor().white_space_removal(file_to_be_preprocessed)
+        number_of_rows =len(data_list_of_list)
+        i=1
+        while i<number_of_rows:
+            if len(data_list_of_list[i]) != len(data_list_of_list[0]):
+                data_list_of_list.pop(i)
+                number_of_rows-=1
+            else:
+                i+=1    
+        return data_list_of_list
+    
 if __name__ == '__main__':
-    # read file as a command-line arguement
+    # read file as data_list_of_list command-line arguement
 #     file_to_be_preprocessed = sys.argv[1]
+    start_time = time.time()
     file_to_be_preprocessed = 'sample2'
-    document_data_frame = pd.DataFrame(Preprocessor().white_space_removal(file_to_be_preprocessed)[1:],columns=Preprocessor().white_space_removal(file_to_be_preprocessed)[0])
-    document_data_frame = document_data_frame.filter(regex = '^[^\?]')
-    document_data_frame.replace(to_replace='\t*\s*#.*',value='',regex=True,inplace=True)
-    print document_data_frame
-
+    data_list_of_list = Preprocessor().remove_extranous_attribute_and_type_caste_numeric_values(file_to_be_preprocessed)
+    pprint(data_list_of_list)        
+    print "{} seconds".format(time.time() - start_time)
+            
     '''PENDING
-    type casting
-    type checking and eliminate rows with faulty data
-    wrong number of cells
-    error reporting
+    type casting - done
+    type checking and eliminate rows with faulty data - eliminated data with non-numeric values for 
+    wrong number of cells - eleminated wrong number of cells
+    error reporting -- left
     '''
