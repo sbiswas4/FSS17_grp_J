@@ -47,7 +47,7 @@ class Preprocessor(object):
         for header in data_list_of_list[0]:
             if header.find('?') == 0:
                 index_of_disqualified_attribute.append(data_list_of_list[0].index(header))
-            elif header.find('$') == 0:
+            elif header.find('$') != -1:
                 numeric_value.append(data_list_of_list[0].index(header))    
         for row_vector in data_list_of_list:
             [row_vector.pop(i) for i in index_of_disqualified_attribute]
