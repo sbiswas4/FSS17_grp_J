@@ -60,8 +60,6 @@ class Preprocessor(object):
 
         number_of_rows = len(data_list_of_list)
         i = 1
-        #with open("num.txt", "w") as output:
-        #    output.write(str(numeric_value))
         while i < number_of_rows:
             try:
                 for j in numeric_value:
@@ -111,9 +109,12 @@ if __name__ == '__main__':
             for value in row:
                 output.write(str(value)+',')
             output.write("\n")
+    with open("ProcessedFile.txt", "w") as output:
+        for row in data_list_of_list:
+            output.write(str(row))
+            output.write("\n")
     log_file = open('log_file.txt', 'w')
     for element in logFile:
         log_file.writelines((element))
         log_file.write("\n")
-
-print "{} seconds".format(time.time() - start_time)
+    log_file.write("The program took {} seconds to read and process {} file".format(time.time() - start_time,file_to_be_preprocessed))
