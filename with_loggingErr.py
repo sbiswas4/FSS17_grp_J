@@ -68,7 +68,7 @@ class Preprocessor(object):
                     data_list_of_list[i][j] = float(data_list_of_list[i][j])
                 i += 1
             except ValueError:
-                log = "Symbols where numbers should be in row " + str(i) + ": " + str(data_list_of_list[i])
+                log = "Symbols where numbers should be in row " + str(i+row_shifted) + ": Found " + data_list_of_list[i][j] + " in cell " + str(j+1) #+ str(data_list_of_list[i])
                 logFile.append(log)
                 data_list_of_list.pop(i)
                 number_of_rows -= 1
@@ -78,18 +78,22 @@ class Preprocessor(object):
     def detect_wrong_number_of_cell(self, file_to_be_preprocessed):
         data_list_of_list = Preprocessor().white_space_removal(file_to_be_preprocessed)
         number_of_rows = len(data_list_of_list)
+        global row_shifted
+        row_shifted = 1
         i = 1
         while i < number_of_rows:
             if len(data_list_of_list[i]) < len(data_list_of_list[0]):
-                log = "Number of cells is less than number of attributes in row " + str(i)  + ": " + str(data_list_of_list[i])
+                log = "Number of cells is less than number of attributes in row " + str(i+row_shifted)  + ": " + str(data_list_of_list[i])
                 logFile.append(log)
                 data_list_of_list.pop(i)
                 number_of_rows -= 1
+                row_shifted +=1
             elif len(data_list_of_list[i]) > len(data_list_of_list[0]):
-                log = "Number of cells is more than number of attributes in row " + str(i)  + ": " + str(data_list_of_list[i])
+                log = "Number of cells is more than number of attributes in row " + str(i+row_shifted)  + ": " + str(data_list_of_list[i])
                 logFile.append(log)
                 data_list_of_list.pop(i)
                 number_of_rows -= 1
+                row_shifted += 1
             else:
                 i += 1
         return data_list_of_list
@@ -107,7 +111,7 @@ if __name__ == '__main__':
         output.write(str(data_list_of_list))
     log_file = open('log_file.txt', 'w')
     print(logFile)
-    print(set(logFile))
+    #v=(set(logFile))
     for element in logFile:
         log_file.writelines((element))
         log_file.write("\n")
