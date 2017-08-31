@@ -112,7 +112,7 @@ if __name__ == '__main__':
     with open("ProcessedFile.txt", "w") as output:
         for row in data_list_of_list:
             output.write(str(row))
-            output.write("\n")
+            output.write("\n\n")
     log_file = open('log_file.txt', 'w')
     for element in logFile:
         log_file.writelines((element))
