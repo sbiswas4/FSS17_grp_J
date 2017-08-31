@@ -112,9 +112,9 @@ if __name__ == '__main__':
     with open("ProcessedFile.txt", "w") as output:
         for row in data_list_of_list:
             output.write(str(row))
-            output.write("\n\n")
+            output.write("\n")
     log_file = open('log_file.txt', 'w')
     for element in logFile:
         log_file.writelines((element))
-        log_file.write("\n")
+        log_file.write("\n\n")
     log_file.write("The program took {} seconds to read and process {} file".format(time.time() - start_time,file_to_be_preprocessed))
