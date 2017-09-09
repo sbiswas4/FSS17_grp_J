@@ -1,3 +1,6 @@
+To execute reading_csv.py for processing the data in POM3A.csv run it as 
+>python reading_csv.py
+
 The program intends to read the csv file and maintain a list of lists to carry out the pre-processing steps.
 
 The output file is written to 'ProcessedFile.txt' and 'ProcessedFile.csv'. The objective being that the ProcessedFile.txt file will let us know if data has been correctly typecasted to its column type while reading.
