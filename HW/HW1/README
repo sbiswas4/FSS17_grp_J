@@ -1,10 +1,20 @@
-To execute reading_csv.py for processing the data in POM3A.csv run it as 
->python reading_csv.py
+Instructions to execute:
+The data/input file is saved in the "data" folder and the python script "reading_csv.py" is in scripts folder. 
+After downloading both the folders, say in folder D:/files in the machine, open the command prompt and enter the absolute path of the python script and the input file POM3A.csv.
+
+In this particular case, the file structure will look like:
+
+D:/files/data/reading_csv.py and D:/files/scripts/POM3A.csv
+
+Enter the following line in the command prompt-
+
+-> python D:/files/scripts/reading_csv.py D:/files/data/POM3A.csv
+
+The output files Processed_file.csv,Processed_file.txt and log_file.txt will be saved in the current directory from where the command has been executed. 
+
 
 The program intends to read the csv file and maintain a list of lists to carry out the pre-processing steps.
-
 The output file is written to 'ProcessedFile.txt' and 'ProcessedFile.csv'. The objective being that the ProcessedFile.txt file will let us know if data has been correctly typecasted to its column type while reading.
-
 A logfile called 'log_file.txt' has been maintained to keep a record of rows formatted. It also informs us about the time it took to read , process and write the csv file given.
 
 The file to be procesed must be put into 'file_to_be_preprocessed' variable under __main__. WE can also use file as an input arguement by uncommenting line 102 and commenting line 104.
