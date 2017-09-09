@@ -99,9 +99,9 @@ class Preprocessor(object):
 
 if __name__ == '__main__':
     # read file as data_list_of_list command-line arguement
-    #     file_to_be_preprocessed = sys.argv[1]
+    file_to_be_preprocessed = sys.argv[1]
     start_time = time.time()
-    file_to_be_preprocessed = 'POM3A.csv'
+    #file_to_be_preprocessed = 'POM3A.csv'
     logFile=[]
     data_list_of_list = Preprocessor().remove_extranous_attribute_and_type_caste_numeric_values(file_to_be_preprocessed)
     with open("ProcessedFile.csv", "w") as output:
