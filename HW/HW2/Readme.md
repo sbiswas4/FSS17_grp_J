@@ -33,5 +33,5 @@ The code is written in Python 2.7
 * The python scripts are in scripts folder and the input data auto.csv is in data folder. Download both the folders and enter their respective paths in the command line as follows:
 
 ```
-python <path>/scripts/tbl.py <path>/data/auto.csv
+python <path>/Scripts/tbl.py <path>/Data/auto.csv
 ```
