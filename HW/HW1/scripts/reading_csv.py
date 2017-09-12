@@ -47,16 +47,17 @@ class Preprocessor(object):
         data_list_of_list = Preprocessor().remove_comments(file_to_be_preprocessed)
         index_of_disqualified_attribute = []
         numeric_value = []
-        for header in data_list_of_list[0]:
-            if header.find('?') == 0:
-                index_of_disqualified_attribute.append(data_list_of_list[0].index(header))
-            elif header.find('$') != -1:
-                numeric_value.append(data_list_of_list[0].index(header))
         number_of_index_shifted = 0
         for i in range(len(index_of_disqualified_attribute)):
             for row_vector in data_list_of_list:
                 row_vector.pop(index_of_disqualified_attribute[i] - number_of_index_shifted)
             number_of_index_shifted += 1
+
+        for header in data_list_of_list[0]:
+                    if header.find('?') == 0:
+                        index_of_disqualified_attribute.append(data_list_of_list[0].index(header))
+                    elif header.find('$') != -1 or header.find('<')!=-1 or header.find('>')!=-1:
+                        numeric_value.append(data_list_of_list[0].index(header))
 
         number_of_rows = len(data_list_of_list)
         i = 1
