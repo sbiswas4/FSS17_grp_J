@@ -1,0 +1,19 @@
+Name:Advait Trivedi
+unity id: astrived
+q)Explore the effects for different K in K Nearest Neighbor classification.
+q)Explain how we should choose K.
+q)Explore different kernels of Support Vector Machine.
+q)Explian how we should choose the kernel
+
+
+
+1)As we increase the number of K the cluster becomes more accurate in terms of capturing data points from the same class.
+However a very large k will include data points from other classes(see k=100 graphs)
+
+2)To begin with k could be sqrt(n),where n is the number of datapoints. 
+We could try iterations of k from thereon to see what k gives lowest error on test set. 
+
+3) The complex kernels capture the non-linearity of the data set as the classification boundary is not a line(rather curvy).
+
+4) Depending if the data set is linearly seperable or not, we must employ kernels for classifications. "Rbf","polynomial"
+
