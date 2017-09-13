@@ -12,4 +12,6 @@ To get best K cross validation should be performed with varying values of K and 
 
 ##Choosing Kernel  
 
-The 3 types of kernels: linear, poly, rbf gives three different decision boundaries.
+The 3 types of kernels: linear, poly, rbf gives three different decision boundaries. 
+
+For choosing Kernel as well cross validation should be performed
