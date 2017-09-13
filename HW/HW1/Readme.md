@@ -32,6 +32,6 @@ The Preprocessor class has functions that preprocess the input file.
 ```
 > python <path>/reading_csv.py <path>/POM3A.csv
 ```
-* The output can be found in the directory through which code has been executed
+* The output files can be found in the directory through which code has been executed
 
 
