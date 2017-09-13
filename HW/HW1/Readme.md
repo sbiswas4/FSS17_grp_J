@@ -13,7 +13,7 @@ Your code should contain checks for bad lines (and bad lines should be skipped o
 
 * ProcessedFile.txt: cleaned output file (txt format). Its purpose is to check if data has been correctly typecasted to its column type while reading.
 
-_ log_file.txt: maintains record of rows formatted. It also informs us about the time it took to read , process and write the csv file given
+* log_file.txt: maintains record of rows formatted. It also informs us about the time it took to read , process and write the csv file given
 
 ### Description of functions
 The Preprocessor class has functions that preprocess the input file.
