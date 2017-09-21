@@ -8,15 +8,19 @@ For this assignment we have used superrangeok.lua as a reference. We generate ou
 
 
 ## Files:
-List_Discretization.py
-Range.py
-Random.py
-Num.py
-Sample.py
+1. List_Discretization.py 
+
+2. Range.py 
+
+3.Random.py 
+
+4. Num.py 
+
+5. Sample.py
  
  
 ## How to run:
-sudo python List_Discretization.py
+sudo python FSS17_grp_J/HW/HW3/Scripts/List_Discretization.py
 
 ## Report:
 Outputs unsupervised bins to console.
