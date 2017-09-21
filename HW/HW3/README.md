@@ -1,7 +1,9 @@
 #HW3 
+
 ##Description:
 Discretize the numeric data into bins using unsupervised and supervised methods.
-For this assignment we have used superrangeok.lua as a reference. We generate our own random numbers to be discretized.
+For this assignment we have used superrangeok.lua as a reference. We generate our own random numbers to be discretized. 
+
 
 
 ##Files:
@@ -10,7 +12,8 @@ Range.py
 Random.py
 Num.py
 Sample.py
-
+ 
+ 
 ##How to run:
 sudo python List_Discretization.py
 
