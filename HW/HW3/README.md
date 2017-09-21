@@ -10,7 +10,7 @@ For this assignment we have used superrangeok.lua as a reference. We generate ou
 ## Files:
 1. List_Discretization.py 
 2. Range.py 
-3.Random.py 
+3. Random.py 
 4. Num.py 
 5. Sample.py
  
