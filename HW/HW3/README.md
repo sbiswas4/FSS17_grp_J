@@ -1,37 +1,25 @@
-# Problem Statement
+HW3
+Description:
+Discretize the numeric data into bins using unsupervised and supervised methods.
+For this assignment we have used superrangeok.lua as a reference. We generate our own random numbers to be discretized.
 
 
-## Set up
+Files:
+List_Discretization.py
+Range.py
+Random.py
+Num.py
+Sample.py
 
-The code is written in Python 2.7
+How to run:
+sudo python List_Discretization.py
 
-## Brief Description of individual code files
-
-### List_Discretization.py.py
-
-* This is the master file which needs to be run. It calls functions from other files when needed. It calls reading_csv.py (Homework 1) and prepares csv file for Homework 2. 
-* It replicates the functionality of tbl.lua with the same function names. It creates the table structure and updates it by calling header and data functionality when necessary when a new row is added
-* It calls the dominate function and assigns dom score to each row and prints top 5 rows with highest dom scores and bottom 5 with the lowest dom score.
-
-### Range.py
-
-* Equivalent of sym.lua, it maintains and updates the knowledge of symbol counts
-
-### Random.py
-
-### Sample.py
-
-
-### Num.py
-
-* Equivalent to num.lua, it contains the update function for numeric column which maintains and updates the knowledge of mean and standard deviation
-
-
-## Execution
-
-* The python scripts are in scripts folder. Download the folder and enter the path in the command line as follows:
-
-```
-sudo python <path>List_Discretization.py
-```
-
+Report:
+Outputs unsupervised bins to console.
+eg:
+x 1 span=0.135538, lo=0.035004, n=8.000000, hi=0.170543
+x 2 span=0.231928, lo=0.206405, n=8.000000, hi=0.438333
+x 3 span=0.160110, lo=0.446259, n=8.000000, hi=0.606369
+x 4 span=0.062465, lo=0.606610, n=8.000000, hi=0.669075
+x 5 span=0.150082, lo=0.758530, n=8.000000, hi=0.908612
+x 6 span=0.088150, lo=0.908990, n=10.000000, hi=0.997140
