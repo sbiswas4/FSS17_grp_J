@@ -7,7 +7,7 @@ For this assignment we have used superrangeok.lua as a reference. We generate ou
 
 
 
-## Files:
+### Files:
 1. List_Discretization.py  - calls Unsupervised range function and contains code for Supervised range
 2. Range.py - Unsupervised ranges creation
 3. Random.py - Generates random numbers
@@ -15,7 +15,7 @@ For this assignment we have used superrangeok.lua as a reference. We generate ou
 5. Sample.py - Synonymous to sample.lua
  
  
-## How to run:
+### Execution Steps:
 
 * The code runs in Python 2.7
 * For executing the code, enter the folder containing all the codes and type following in the terminal:
