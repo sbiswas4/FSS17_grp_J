@@ -10,7 +10,6 @@ def cls(z):
     if z > 0 and z < 0.2:
         v = 0.2
     elif z >= 0.2 and z <= 0.6:
-
         v = 0.6
     else:
         v = 0.9
@@ -29,7 +28,9 @@ if __name__ == "__main__":
         c = cls(w)
         Num.update(n, c)
         t.append(list([w, c]))
+        
 # Generate Unsupervised ranges
+
     print("\nUnsupervised ranges")
     Ranges = Rng.main(t, x)
     for j, one in enumerate(Rng.main(t, x)):
@@ -50,7 +51,6 @@ if __name__ == "__main__":
                 purity.append({'purity': False})
                 break
         start += i
-
         purity.append({'purity':True,'class':sorted_tab[j][1]})
 
     index =0
