@@ -2,10 +2,8 @@ iimport Random as Rnd
 import Num as Num
 import Range as Rng
 
-
 def x(z):
     return z[0]
-
 
 def cls(z):
     v = 0.0
@@ -17,8 +15,6 @@ def cls(z):
     else:
         v = 0.9
     return v
-
-
 
 def sort_t(t):
     t = sorted(t, key=lambda v: x(v))
@@ -46,7 +42,7 @@ if __name__ == "__main__":
     sorted_tab = sort_t(t)
     start = 0
     dict_pure = {}
-    purity = [] #1 impure, 0 pure
+    purity = [] #False impure, True pure
 
     for i in bin_length:
         for j in range(start,start + i):
