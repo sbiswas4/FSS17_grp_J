@@ -12,7 +12,7 @@ For this assignment we have used superrangeok.lua as a reference. We generate ou
 2. Range.py - Unsupervised ranges creation
 3. Random.py - Generates random numbers
 4. Num.py - Code for numeric values
-5. Sample.py
+5. Sample.py - Synonymous to sample.lua
  
  
 ## How to run:
