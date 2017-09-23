@@ -39,7 +39,7 @@ if __name__ == "__main__":
     sorted_tab = sort_t(t)
     start = 0
     dict_pure = {}
-    purity = [] #1 impure, 0 pure
+    purity = [] #False impure, True pure
 
     for i in bin_length:
         for j in range(start,start + i):
