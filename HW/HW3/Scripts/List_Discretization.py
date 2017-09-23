@@ -1,4 +1,4 @@
-iimport Random as Rnd
+import Random as Rnd
 import Num as Num
 import Range as Rng
 
