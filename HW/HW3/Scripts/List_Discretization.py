@@ -28,22 +28,18 @@ if __name__ == "__main__":
         c = cls(w)
         Num.update(n, c)
         t.append(list([w, c]))
-        
-# Generate Unsupervised ranges
-
+# Unsupervised range generation
     print("\nUnsupervised ranges")
     Ranges = Rng.main(t, x)
     for j, one in enumerate(Rng.main(t, x)):
         print("x", j + 1, str(one))
         bin_length.append(one.n)
         bin_most.append(one.hi)
-        
-# Generate Supervised ranges
-
+# Supervised range generation
     sorted_tab = sort_t(t)
     start = 0
     dict_pure = {}
-    purity = [] #False impure, True pure
+    purity = [] #1 impure, 0 pure
 
     for i in bin_length:
         for j in range(start,start + i):
