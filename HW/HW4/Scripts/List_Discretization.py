@@ -2,6 +2,28 @@ import Random as Rnd
 import Num as Num
 import Range as Rng
 
+tree_max_depth = 10
+
+class sdtree:
+	def __init__(self):
+		self._t = None
+		self._kids = []
+		self.yfun = None
+		self.pos = None
+		self.attr = None
+		self.val = None
+		self.stats = None
+
+	def create(self,t,yfun,pos,attr,val):
+		self._t = t
+		self._kinds={}
+		self.yfun = yfun
+		self.pos = pos
+		self.attr = attr
+		self.val = val
+		self.stats = num.updates(t.rows, yfun)
+return
+
 def x(z):
     return z[0]
 
@@ -70,3 +92,5 @@ if __name__ == "__main__":
         purity[i].update({'label':i+1})
         purity[i].pop('purity')
         print(purity[i])
+
+ 
