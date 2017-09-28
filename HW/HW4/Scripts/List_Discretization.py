@@ -22,7 +22,35 @@ class sdtree:
 		self.attr = attr
 		self.val = val
 		self.stats = num.updates(t.rows, yfun)
-return
+		return
+	def order(t,y):
+		#def __init__(self, t, y):
+		#	self.t = t
+		#	self.y = y
+		#	self,.out = {}
+		#return
+
+		def xpect(col):
+			tmp = 0
+			for _,x in enumerate(cols.nums):
+				tmp = tmp + x.sd * x.n / col.n
+		return tmp
+
+		def whatif(head, y):
+			col = {'pos':head.pos, 'what'=head.txt, 'nums'={}, 'n'=0}
+			for _,row in enumerate(t.rows):
+				x = row.cells[col['pos']]
+				col['n'] = col['n'] + 1
+				col['nums']['x'] = num.update(col['nums']['x'], y(row))
+			return {'key':xpect(col), 'val':col}
+		out = []
+		for _,h in enumerate(t.x.cols):
+			out.append(whatif(h,y))
+		# how to write function (x,y) return x.key < y.key
+		table.sort(out,x.key<y.key)
+		# the last line too
+		return lst.collect(out, x.val)
+
 
 def x(z):
     return z[0]
