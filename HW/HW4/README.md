@@ -12,9 +12,9 @@ Write a list printer that recurses down the tree and prints details about each n
 
 
 ### Files:
-1. List_Discretization.py  - decision tree learner
+1. Discretization.py  - decision tree learner
 2. Range.py - Unsupervised ranges creation
-3. Random.py - Generates random numbers
+3. tree.py - Generates random numbers
 4. Num.py - Code for numeric values
 5. Sample.py - Synonymous to sample.lua
  
