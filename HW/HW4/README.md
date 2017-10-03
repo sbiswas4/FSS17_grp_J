@@ -16,7 +16,7 @@ Write a list printer that recurses down the tree and prints details about each n
 2. Range.py - Unsupervised ranges creation
 3. tree.py - Generates random numbers
 4. Num.py - Code for numeric values
-5. Sample.py - Synonymous to sample.lua
+
  
  
 ### Execution Steps:
@@ -25,5 +25,5 @@ Write a list printer that recurses down the tree and prints details about each n
 * For executing the code, enter the folder containing all the codes and type following in the terminal:
 
 ```
-> python List_Discretization.py
+> python tree.py
 ```
