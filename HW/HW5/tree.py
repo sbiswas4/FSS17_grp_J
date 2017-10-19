@@ -1,6 +1,8 @@
 import numpy as np
 import csv
+import re
 import Range
+import math
 import Superrange
 import collections
 from anytree import Node,RenderTree
@@ -125,6 +127,7 @@ class Tree:
             var = self.bin_var(bin)
             variance_of_bins.append(var)
         final_tree = self.create_tree(all_bins,variance_of_bins)
+        return final_tree
 
     def call_Num_for_nested_list(self,lst,key):
         num_output = []
@@ -136,8 +139,19 @@ class Tree:
             for k in range(len(lst)):
                 num_op = Num.updates(lst[k],self.second_value,None)
                 num_op.independent_column = key
+                avg_dom = self.calculate_dom(num_op.elements)
+                num_op.avg_dom = avg_dom
                 num_output.append(deepcopy(num_op))
+
         return num_output
+
+    def calculate_dom(self,elements):
+        dom_values = []
+        for i in elements:
+            dom = self.second_value(i)
+            dom_values.append(dom)
+        avg_dom = np.mean(dom_values)
+        return avg_dom
 
     def return_summarized_output(self,dict,independent_columns):
         sd = float('Inf')
@@ -181,11 +195,18 @@ class Tree:
         sum_all = []
         for s in range(len(summary)):
             sum = {key: summary[s][0].__dict__[key] for key in ["independent_column", "n", "variance"]}
+            sum['x'] = sum['independent_column']
+            sum['sd'] = math.sqrt(sum['variance'])
+            sum['sd'] = float("{:.2f}".format(sum['sd']))
+            sum = {key: sum[key] for key in ["x", "n", "sd"]}
             sum_all.append(sum)
         root = Node(sum_all)
-        tree = self.build_tree(bin_dict,None,independent_columns,level,root)
-        for pre, fill, node in RenderTree(tree):
-            print("%s%s" % (pre, node.name))
+
+        count_dict = {"displacement":0,"horsepower":0,"model":0}
+        n_parent = 0
+        tree = self.build_tree(bin_dict,None,independent_columns,level,root,count_dict,n_parent)
+
+        return tree
 
     def get_bins(self, bin_dictionary, column_name):
         return_bins = {}
@@ -232,21 +253,53 @@ class Tree:
 
             return(i,least_bin)
 
-    def build_tree(self,bin_dictionary,parent,independent_var,level,root):
+    def build_tree(self,bin_dictionary,parent,independent_var,level,root,count_dict,n_parent):
 
         index,children = self.find_children(bin_dictionary,independent_var)
+
         level +=1
         for k in range(len(children)):
             ind_var = ["displacement","horsepower","model"]
-            child = { key: children[k].__dict__[key] for key in ["independent_column","n","variance"] }
+            child = { key: children[k].__dict__[key] for key in ["independent_column","n","variance","avg_dom"]}
+            if n_parent == child['n']:
+                continue
+
+            child['sd'] = math.sqrt(child['variance'])
+            child['sd'] =  float("{:.2f}".format(child['sd']))
+            count_dict[child['independent_column']] +=1
+            child['x'] = child['independent_column'] + str(count_dict[child['independent_column']])
+            child = {key: child[key] for key in ['x', 'sd', 'n','avg_dom']}
+
             del ind_var[index]
             bin_dict_for_next_level = {independent_var[index]:children[k].elements}
             node_name = Node(child,parent = root)
-            if level < 3:
-                self.build_tree(bin_dict_for_next_level, independent_var[index], ind_var, level,node_name)
+            if level < 4:
+                self.build_tree(bin_dict_for_next_level, independent_var[index], ind_var, level,node_name,count_dict,child['n'])
         return root
 
 
 
 t = Tree()
-t.main()
+final_tree = t.main()
+path_to_leaves = {}
+for pre, fill, node in RenderTree(final_tree):
+
+    if(len(node.children) == 0):
+        #print("%s%s" % (pre, (node.path[len(node.path)-1])))
+        path_to_leaf = ["root"]
+        key = node.name['x']
+        #print("key",key)
+        path_tonode = node.path[len(node.path) - 1]
+        str_path = str(path_tonode)
+        required_path = str_path.split("/")[2:]
+        for k in range(len(required_path)):
+            path_element = (list(required_path)[k].split(","))[0].split(":")[1]
+            path_to_leaf.append(path_element)
+            #print((list(required_path)[k].split(","))[0].split(":")[1])
+        #path_to_leaf = path_to_leaf[:-1]
+        path_to_leaves.update({key:path_to_leaf})
+
+#print(type(path_to_leaves))
+for key,value in path_to_leaves.iteritems():
+    print("Leaf_node:",key,"Path:",value)
+
